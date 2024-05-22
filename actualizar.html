@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modificar Empleado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            animation: fadeInDown 1s ease-in-out, colorChange 3s infinite alternate;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            animation: fadeInUp 1s ease-in-out;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 2px solid #4CAF50;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            width: 50%;
+        }
+        td {
+            width: 50%;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #d1ffd1;
+            transition: background-color 0.3s ease-in-out;
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes colorChange {
+            from {
+                color: #4CAF50;
+            }
+            to {
+                color: #FF5733;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Modificar Empleado</h1>
+    <form action="modificar_empleado.php" method="post">
+        <label for="ID_empleado">ID Empleado:</label>
+        <input type="text" id="ID_empleado" name="ID_empleado" required>
+        <input type="submit" value="Cargar Datos">
+    </form>
+
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['ID_empleado'])) {
+        // Datos de conexión
+        $host = 'localhost';
+        $dbname = 'GESTIONHOTELMJ';
+        $user = 'postgres';
+        $password = 'junior';
+
+        // Conexión a PostgreSQL
+        $conexion = pg_connect("host=$host dbname=$dbname user=$user password=$password");
+
+        if (!$conexion) {
+            echo 'No se pudo conectar: ' . pg_last_error();
+            exit;
+        }
+
+        // Obtener el ID desde la solicitud POST
+        $ID_empleado = $_POST['ID_empleado'];
+
+        if (!is_numeric($ID_empleado)) {
+            die("El ID_empleado proporcionado no es válido.");
+        }
+
+        // Consulta SQL para obtener los datos del empleado
+        $query = "SELECT * FROM Personal_Hotel WHERE ID_empleado = $1";
+        $result = pg_query_params($conexion, $query, array($ID_empleado));
+
+        if (!$result) {
+            die("Error en la consulta SQL: " . pg_last_error());
+        }
+
+        if (pg_num_rows($result) > 0) {
+            $row = pg_fetch_assoc($result);
+            echo '<form action="modificar_empleado.php" method="post">';
+            echo '<input type="hidden" name="ID_empleado" value="' . htmlspecialchars($row['id_empleado']) . '">';
+            echo '<label for="nombres">Nombres:</label><input type="text" name="nombres" value="' . htmlspecialchars($row['nombres']) . '"><br>';
+            echo '<label for="apellidos">Apellidos:</label><input type="text" name="apellidos" value="' . htmlspecialchars($row['apellidos']) . '"><br>';
+            echo '<label for="cedula">Cédula:</label><input type="text" name="cedula" value="' . htmlspecialchars($row['cedula']) . '"><br>';
+            echo '<label for="fecha_contrato">Fecha de Contrato:</label><input type="date" name="fecha_contrato" value="' . htmlspecialchars($row['fecha_contrato']) . '"><br>';
+            echo '<label for="fecha_finalizacion_contrato">Fecha de Finalización de Contrato:</label><input type="date" name="fecha_finalizacion_contrato" value="' . htmlspecialchars($row['fecha_finalizacion_contrato']) . '"><br>';
+            echo '<label for="horas_trabajo">Horas de Trabajo:</label><input type="text" name="horas_trabajo" value="' . htmlspecialchars($row['horas_trabajo']) . '"><br>';
+            echo '<label for="capacitaciones">Capacitaciones:</label><input type="text" name="capacitaciones" value="' . htmlspecialchars($row['capacitaciones']) . '"><br>';
+            echo '<label for="jornada_trabajo">Jornada de Trabajo:</label><input type="text" name="jornada_trabajo" value="' . htmlspecialchars($row['jornada_trabajo']) . '"><br>';
+            echo '<label for="salario">Salario:</label><input type="text" name="salario" value="' . htmlspecialchars($row['salario']) . '"><br>';
+            echo '<label for="estado_contrato">Estado del Contrato:</label><input type="text" name="estado_contrato" value="' . htmlspecialchars($row['estado_contrato']) . '"><br>';
+            echo '<label for="nomina">Nómina:</label><input type="text" name="nomina" value="' . htmlspecialchars($row['nomina']) . '"><br>';
+            echo '<label for="turnos">Turnos:</label><input type="text" name="turnos" value="' . htmlspecialchars($row['turnos']) . '"><br>';
+            echo '<input type="submit" value="Modificar">';
+            echo '</form>';
+        } else {
+            echo "No se encontraron resultados para el ID_empleado: " . htmlspecialchars($ID_empleado);
+        }
+
+        // Cerrar la conexión
+        pg_close($conexion);
+    }
+    ?>
+</body>
+</html>

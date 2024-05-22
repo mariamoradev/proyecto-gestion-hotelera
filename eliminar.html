@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modificar Empleado</title>
+
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            animation: fadeInDown 1s ease-in-out, colorChange 3s infinite alternate;
+        }
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="date"], input[type="submit"] {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            animation: fadeInUp 1s ease-in-out;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 2px solid #4CAF50;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            width: 50%;
+        }
+        td {
+            width: 50%;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #d1ffd1;
+            transition: background-color 0.3s ease-in-out;
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes colorChange {
+            from {
+                color: #4CAF50;
+            }
+            to {
+                color: #FF5733;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Eliminar empleado</h1>
+    <form action="eliminar.php" method="post">
+        <label for="ID_empleado">ID Empleado:</label>
+        <input type="text" id="ID_empleado" name="ID_empleado" required>
+        <input type="submit" value="Eliminar empleado">
+    </form>
+
+    
+</body>
+</html>
