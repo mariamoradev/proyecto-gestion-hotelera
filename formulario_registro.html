@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disponibilidad y Reserva de Salones</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 50px;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 5px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        form input,
+        form select,
+        form textarea {
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+
+        form button {
+            padding: 15px;
+            font-size: 18px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #555;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1px 0;
+            margin-top: -20px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Bienvenido estimado usuario, por favor digite sus datos en el siguiente formulario</h1>
+    </header>
+
+    <main>
+        <!-- Formulario de Registro -->
+        <section>
+            <center><h2>FORMULARIO DE REGISTRO</h2></center>
+            <form id="registration-form" action="formulario_registro.php" method="post">
+                <label for="nombre">Nombres:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" id="apellidos" name="apellidos" required>
+
+                <label for="numeroidentidad">Número de identificación:</label>
+                <input type="number" id="numeroidentidad" name="numeroidentidad" required>
+
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono" required>
+
+                <label for="nacionalidad">Nacionalidad:</label>
+                <input type="text" id="nacionalidad" name="nacionalidad" required>
+
+                <label for="fechanacimiento">Fecha de nacimiento:</label>
+                <input type="date" id="fechanacimiento" name="fechanacimiento" required>
+
+                <button type="submit">Registrar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Salones de Eventos</p>
+    </footer>
+</body>
+
+</html>
+
