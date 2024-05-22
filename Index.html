@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            font-family: "Pacifico";
+        }
+        .login-box {
+            width: 1200px; /* Aumentar el ancho */
+            height: 1200px; /* Ajustar altura automática */
+            max-height: 90vh; /* Altura máxima para evitar desbordamiento */
+            background: rgba(255, 255, 255, 0.5);
+            color: #000;
+            font-size: 2.5em;
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            box-sizing: border-box;
+            padding: 50px 40px; /* Ajustar padding */
+            backdrop-filter: blur(0px); /* Efecto de desenfoque */
+            overflow-y: auto; /* Scroll en caso de desbordamiento */
+        }
+        .background-wrap {
+            position: fixed;
+            z-index: -1000;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+        }
+        #video-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: -1000;
+            overflow: hidden;
+        }
+        .bienvenido{
+            font-size: 2.4em;
+            
+            font-weight: 900;
+            background: -webkit-linear-gradient(rgb(11, 29, 220),rgb(188, 8, 137));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: tomato;  
+            
+        }
+        .casillas{
+            width: 10%;
+            height: 10%;
+        }
+        .form-control{
+            border-radius: 10px;
+                 border-color: #0914ec;
+                 font-size: 1.1em;
+                 font-family: 'Agbalumo';
+                 padding: 0.2%;
+                 text-align: center;
+                 background: transparent;
+                backdrop-filter: blur(20px);
+                border-radius: 28px;
+                color: rgb(9, 10, 11);
+        }
+        .btnlogin{
+            width: 10%;
+            height: 30%;
+                 border-radius: 10px;
+                 border-color: #251ac0;
+                 font-size: 1.3em;
+                
+                 font-family: 'Agbalumo';
+                 padding-top: 0.5cm;
+                 padding-left: 0.5cm;
+                 padding-right: 4cm;
+                 padding-bottom: 0.5cm;
+
+                background: transparent;
+                backdrop-filter: blur(28px);
+                border-radius: 28px;
+                color: rgb(13, 14, 15);
+                 
+        }
+
+        .btn btn-link{
+            font-size: 1em;
+        }
+        .custom-btn-link {
+            color: rgb(188, 8, 137); 
+            font-size: 1.1em; 
+            text-decoration: none; /* elimina el subrayado */
+            padding: 10px 20px; 
+        }
+        
+        
+
+
+    </style>
+</head>
+<body>
+    <div class="background-wrap">
+        <video id="video-bg" preload="auto" autoplay="true" loop="loop" muted="muted">
+            <source src="mi_video_pro_aula.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="login-box">
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form role="form" action="index.php" method="post">
+                            <div class="form-group">
+                                 <br>
+                                <center><b> <h1 class="bienvenido">BIENVENIDO</h1></b></center>
+                                 <p>Esperamos que tenga una experiencia satisfactoria.</p><br>
+                                 <label for="user" class="casillas">Email </label>
+                                 <input type="email" class="form-control" id="user" name="user"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="pass" class="casillas">Password</label>
+                                <input type="password" class="form-control" id="pass" name="pass"/>
+                            </div>
+                            <div class="form-group">
+                                Rol: <select name="rol" class="form-control">
+                                    <option value="1">Admin</option>
+                                    <option value="2">Invitado</option>
+                                </select> 
+                                
+
+                            <center>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                             
+                                            <button type="button" class="btn btn-link custom-btn-link" onclick="window.location.href='formulario_registro.html'">
+                                                ¿No tienes cuenta? Regístrate.
+                                            </button>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </center>
+                            <button type="submit" class="btnlogin">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
